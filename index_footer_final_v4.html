@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConSea Technology | Structured Capital Solutions</title>
+    <style>
+        /* --- WORLD CLASS DESIGN SYSTEM (McKinsey Style) --- */
+        :root {
+            --navy-deep: #0B1623;
+            --navy-primary: #0F1C2E;
+            --navy-light: #1F2D40;
+            --gold-accent: #C5A059;
+            --gold-light: #E5C585;
+            --white: #FFFFFF;
+            --grey-bg: #F8F9FA;
+            --text-main: #333333;
+            --text-muted: #666666;
+            
+            --font-heading: 'Playfair Display', 'Georgia', serif;
+            --font-body: 'Inter', 'Helvetica Neue', sans-serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-main);
+            background-color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 25px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--navy-primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        nav ul { display: flex; gap: 40px; list-style: none; }
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        nav a:hover { color: var(--gold-accent); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            height: 90vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            /* IMAGE: Bridge Background */
+            background: linear-gradient(rgba(11, 22, 35, 0.6), rgba(11, 22, 35, 0.8)), 
+                        url('hero-bg.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 0 5%;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            color: var(--white);
+            margin-top: -50px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            max-width: 600px;
+        }
+
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 15px 35px;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: var(--gold-accent);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .btn-outline:hover {
+            border-color: var(--gold-accent);
+            background: rgba(197, 160, 89, 0.1);
+            color: var(--white);
+        }
+
+        /* --- FLOATING STATS BAR --- */
+        .stats-container {
+            position: relative;
+            z-index: 10;
+            margin-top: -80px;
+            padding: 0 5%;
+        }
+
+        .stats-bar {
+            background: var(--white);
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 40px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .stat-item { display: flex; align-items: center; gap: 15px; }
+
+        .stat-icon img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            mix-blend-mode: multiply; /* Helps blend white backgrounds */
+        }
+
+        .stat-text { display: flex; flex-direction: column; }
+        .stat-value { font-weight: 600; font-size: 1.1rem; color: var(--navy-primary); }
+        .stat-label { font-size: 0.9rem; color: var(--text-muted); }
+
+        /* --- SECTIONS GENERAL --- */
+        section { padding: 100px 5%; }
+        
+        .section-heading { margin-bottom: 60px; max-width: 700px; }
+        .section-heading h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--navy-primary);
+            margin-bottom: 20px;
+        }
+        .section-heading p { color: var(--text-muted); font-size: 1.1rem; }
+
+        /* --- SOLUTIONS --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .service-card { transition: transform 0.3s ease; }
+        .service-card:hover { transform: translateY(-10px); }
+
+        .service-icon-box {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 25px;
+        }
+        
+        .service-icon-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            mix-blend-mode: multiply;
+        }
+
+        .service-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--navy-primary);
+        }
+        .service-card p { color: var(--text-muted); font-size: 1rem; line-height: 1.7; }
+
+        /* --- INVESTMENT SECTION --- */
+        .bg-light { background-color: var(--grey-bg); }
+
+        .split-section { display: flex; align-items: center; gap: 80px; }
+        .split-content { flex: 1; }
+        .split-image-container { flex: 1; height: 500px; position: relative; }
+        
+        .split-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+            border-radius: 4px;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.1));
+        }
+
+        .highlight-list { margin-top: 30px; list-style: none; }
+        .highlight-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-main);
+        }
+        .highlight-list li span:last-child { font-weight: 600; color: var(--navy-primary); }
+
+        .gold-pill {
+            display: inline-block;
+            background: rgba(197, 160, 89, 0.15);
+            color: var(--navy-primary);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        /* --- TEAM SECTION --- */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .team-card {
+            background: var(--white);
+            border: 1px solid #eee;
+            border-radius: 4px;
+            padding: 35px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .team-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-color: var(--gold-accent);
+            transform: translateY(-5px);
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            background-color: var(--navy-light);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-accent);
+            font-size: 1.5rem;
+            font-family: var(--font-heading);
+        }
+
+        .team-name { font-family: var(--font-heading); font-size: 1.3rem; color: var(--navy-primary); margin-bottom: 5px; }
+        .team-role { font-size: 0.9rem; color: var(--gold-accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+
+        .linkedin-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--text-muted); text-decoration: none; font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+        .linkedin-link:hover { color: #0077b5; }
+
+        /* --- FOOTER --- */
+        footer { background-color: var(--navy-deep); color: var(--white); padding: 80px 5% 40px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+        .footer-brand h4 { font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 20px; }
+        .footer-brand p { color: rgba(255,255,255,0.5); max-width: 300px; }
+        .footer-col h5 { color: var(--gold-accent); margin-bottom: 20px; font-size: 0.9rem; text-transform: uppercase; }
+        .footer-col a { display: block; color: rgba(255,255,255,0.7); text-decoration: none; margin-bottom: 12px; }
+        .footer-col a:hover { color: var(--white); }
+        .legal-strip { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; font-size: 0.8rem; color: rgba(255,255,255,0.4); display: flex; justify-content: space-between; }
+
+
+        .btn-primary {
+            display: inline-block;
+            padding: 15px 35px;
+            background: rgba(197, 160, 89, 0.95);
+            color: var(--navy-deep);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-1px);
+        }
+        .hero-qualifier {
+            margin-top: 18px;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.75);
+            max-width: 650px;
+        }
+
+        .contact-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--white);
+            border: 1px solid #eee;
+            border-radius: 4px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        }
+        .contact-subcopy {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            font-size: 0.98rem;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px 22px;
+        }
+        .form-field label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--navy-primary);
+            margin-bottom: 8px;
+        }
+        .form-field input,
+        .form-field textarea {
+            width: 100%;
+            padding: 14px 14px;
+            border: 1px solid #dfe3e8;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .form-field input:focus,
+        .form-field textarea:focus {
+            border-color: rgba(197, 160, 89, 0.9);
+            box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15);
+        }
+        .form-field input.invalid,
+        .form-field textarea.invalid {
+            border-color: #c0392b;
+            box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.10);
+        }
+        .field-msg {
+            min-height: 18px;
+            margin-top: 6px;
+            font-size: 0.85rem;
+            color: #c0392b;
+        }
+        .consent-line {
+            margin: 18px 0 18px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .post-submit {
+            margin-top: 14px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .post-submit a { color: var(--navy-primary); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--gold-accent); }
+        .form-status {
+            margin-top: 16px;
+            font-size: 0.95rem;
+            color: var(--navy-primary);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .btn-primary { display: block; text-align: center; margin-bottom: 12px; }
+            .btn-outline { display: block; text-align: center; margin-left: 0 !important; }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .stats-bar { gap: 40px; justify-content: flex-start; }
+            .split-section { flex-direction: column; }
+            .split-image-container { width: 100%; height: 300px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            nav { display: none; }
+        }
+    
+.solutions-intro-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 56px;
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto 48px;
+}
+
+.solutions-intro-text h2 {
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  color: var(--navy-primary);
+  margin-bottom: 20px;
+}
+
+.solutions-intro-text p {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+}
+
+.solutions-intro-image img {
+  width: 100%;
+  max-width: 540px;
+  display: block;
+  margin-left: auto;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.12));
+}
+
+.services-grid.refined {
+  gap: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-card.refined {
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  padding: 32px;
+}
+
+.service-outcome {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+  font-weight: 600;
+  color: var(--navy-primary);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 900px) {
+  .solutions-intro-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .solutions-intro-image img {
+    margin: 0 auto;
+  }
+}
+
+
+
+#solutions { padding-top: 85px; padding-bottom: 90px; }
+</style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">ConSea Technology</a>
+        <nav>
+            <ul>
+                <li><a href="#solutions">Solutions</a></li>
+                <li><a href="#investment">Investment</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#team">Leadership</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Unlocking Liquidity for<br>Southeast Asia’s Leading Consumer Lenders</h1>
+            <p>We provide structured capital solutions and operational expertise to help high-growth lending platforms scale responsibly and attract global institutional capital.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn-primary">Request a Confidential Discussion</a>
+                <a href="#solutions" class="btn-outline">View Our Capital Solutions</a>
+            </div>
+            <div class="hero-qualifier">For consumer lenders and institutional investors active in Southeast Asia.</div>
+        </div>
+    </section>
+
+    <div class="stats-container">
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <img src="icon-graph.jpg" alt="Graph Icon">
+                </div>
+                <div class="stat-text">
+                    <span class="stat-value">10 % p.a.</span>
+                    <span class="stat-label">Target Net Returns</span>
+                </div>
+            </div>
+
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <img src="icon-globe.jpg" alt="Globe Icon">
+                </div>
+                <div class="stat-text">
+                    <span class="stat-value">SEA Region</span>
+                    <span class="stat-label">Core Operating Region</span>
+                </div>
+            </div>
+
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <img src="icon-shield.jpg" alt="Shield Icon">
+                </div>
+                <div class="stat-text">
+                    <span class="stat-value">First Loss Prevention</span>
+                    <span class="stat-label">Aligned Downside Risk</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+<section id="solutions">
+  <div class="solutions-intro-grid">
+    <div class="solutions-intro-text">
+      <h2>Structured Capital and Operational Support for Scalable Lending</h2>
+      <p>
+        Southeast Asia’s consumer credit market is fragmented, fast-growing, and capital constrained.
+        ConSea partners with lending institutions to turn loan portfolios into scalable, investable
+        assets while improving the operational quality behind them.
+      </p>
+    </div>
+    <div class="solutions-intro-image">
+      <img src="image_no-bg_1769507726580.png" alt="Capital and operations framework">
+    </div>
+  </div>
+
+  <div class="services-grid refined">
+    <div class="service-card refined">
+      <div class="service-icon-box">
+        <img src="icon-bank.jpg" alt="">
+      </div>
+      <h3>Structured Capital</h3>
+      <p>
+        We transform performing consumer loan portfolios into predictable cash flow instruments.
+        By structuring senior capital against existing assets, originators unlock immediate liquidity
+        without diluting equity or slowing growth.
+      </p>
+      <div class="service-outcome">
+        Increase origination capacity while preserving balance sheet control.
+      </div>
+    </div>
+
+    <div class="service-card refined">
+      <div class="service-icon-box">
+        <img src="icon-gears.jpg" alt="">
+      </div>
+      <h3>Operational Excellence</h3>
+      <p>
+        Capital alone is not enough. We work hands-on with partners to strengthen underwriting,
+        servicing, and collections processes, improving portfolio performance and investor confidence.
+      </p>
+      <div class="service-outcome">
+        Higher net yields through disciplined risk and cost control.
+      </div>
+    </div>
+
+    <div class="service-card refined">
+      <div class="service-icon-box">
+        <img src="icon-target.jpg" alt="">
+      </div>
+      <h3>Market Expansion</h3>
+      <p>
+        We support partners in scaling customer acquisition through data-driven strategies designed
+        for sustainable growth rather than short-term volume.
+      </p>
+      <div class="service-outcome">
+        Predictable expansion with controlled acquisition economics.
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <section id="investment" class="bg-light">
+        <div class="split-section">
+            <div class="split-image-container">
+                <img src="investment-bg.jpg" alt="ConSea Investment Structure" class="split-image">
+            </div>
+            <div class="split-content">
+                <span class="gold-pill">For Investors</span>
+                <h2>Access High-Growth Private Credit. <br>Downside Protected.</h2>
+                <p>ConSea offers institutional investors curated exposure to Southeast Asian consumer credit through rigorously structured private credit vehicles. Our first loss protection aligns incentives and supports disciplined risk management.</p>
+                
+                <ul class="highlight-list">
+                    <li>Target Return (USD) <span>10%+ p.a.</span></li>
+                    <li>Underlying Assets <span>Diversified Consumer Loan Portfolios</span></li>
+                    <li>Risk Mitigation <span>First Loss Prevention Protection and Active Oversight</span></li>
+                    <li>Region <span>Southeast Asia</span></li>
+                </ul>
+
+                <a href="#contact" style="display: inline-block; margin-top: 30px; color: var(--navy-primary); font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--gold-accent);">Request the Full Investment Overview &rarr;</a>
+<div style="margin-top: 10px; color: var(--text-muted); font-size: 0.9rem;">Information provided on a confidential, accredited investor basis.</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-heading" style="margin: 0 auto; text-align: center; max-width: 800px;">
+            <h2>Built at the Intersection of Finance, Technology, and Operations</h2>
+            <p style="margin-bottom: 30px;">ConSea Technology combines the discipline of structured finance with the execution mindset of a fintech operator.</p>
+            <p>Headquartered in Singapore, our team brings decades of experience across consumer lending, credit structuring, and growth operations in Asian markets. We are not a passive capital provider. We partner closely with lenders to improve asset quality, align incentives, and build portfolios that can scale sustainably and attract long-term institutional funding.</p>
+        </div>
+    </section>
+
+    <section id="team" class="bg-light">
+        <div class="section-heading" style="text-align: center; margin-left: auto; margin-right: auto;">
+            <h2>Experienced Leadership with Local Market Depth</h2>
+            <p>Our leadership team brings hands-on experience across structured finance, consumer lending, and operational scaling in emerging markets.</p>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-card">
+                <img class="team-avatar" src="LukasBis.png" alt="Lukas Bis">
+                <h3 class="team-name">Lukas Bis</h3>
+                <p class="team-role">Managing Partner</p>
+                <a href="https://www.linkedin.com/in/lukasbis/" target="_blank" class="linkedin-link">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    Connect on LinkedIn
+                </a>
+            </div>
+
+            <div class="team-card">
+                <img class="team-avatar" src="DanielSturm.png" alt="Daniel Sturm">
+                <h3 class="team-name">Daniel Sturm</h3>
+                <p class="team-role">Partner / Advisory</p>
+                <a href="https://www.linkedin.com/in/danielsturm/" target="_blank" class="linkedin-link">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    Connect on LinkedIn
+                </a>
+            </div>
+
+            <div class="team-card">
+                <img class="team-avatar" src="MartinCiklamini.png" alt="Martin Ciklamini">
+                <h3 class="team-name">Martin Ciklamini</h3>
+                <p class="team-role">Partner / Investment</p>
+                <a href="https://www.linkedin.com/in/martin-ciklamini/" target="_blank" class="linkedin-link">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    Connect on LinkedIn
+                </a>
+            </div>
+        </div>
+        <div style="margin-top: 50px; text-align: center;">
+            <a href="#contact" class="btn-primary">Connect With Our Leadership Team</a>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-heading" style="margin: 0 auto; text-align: center; max-width: 800px;">
+            <h2>Start a Confidential Conversation</h2>
+            <p>Whether you are a lending platform seeking structured capital or an investor exploring private credit opportunities in Southeast Asia, we welcome an initial, confidential discussion.</p>
+        </div>
+        <div class="contact-card">
+            <h3 style="font-family: var(--font-heading); color: var(--navy-primary); margin-bottom: 10px;">Request a Confidential Introduction</h3>
+            <p class="contact-subcopy">This information is used solely to respond to your inquiry. We do not share or distribute contact details.</p>
+            <form id="contactForm" novalidate>
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label for="fullName">Full name</label>
+                        <input id="fullName" name="fullName" type="text" placeholder="Your full name" required>
+                        <div class="field-msg" data-for="fullName"></div>
+                    </div>
+                    <div class="form-field">
+                        <label for="email">Email address</label>
+                        <input id="email" name="email" type="email" placeholder="Work email address" required>
+                        <div class="field-msg" data-for="email"></div>
+                    </div>
+                    <div class="form-field">
+                        <label for="org">Organization</label>
+                        <input id="org" name="org" type="text" placeholder="Company or fund name" required>
+                        <div class="field-msg" data-for="org"></div>
+                    </div>
+                    <div class="form-field">
+                        <label for="role">Role</label>
+                        <input id="role" name="role" type="text" placeholder="Your role or title" required>
+                        <div class="field-msg" data-for="role"></div>
+                    </div>
+                </div>
+                <div class="form-field" style="margin-top: 18px;">
+                    <label for="message">Message (optional)</label>
+                    <textarea id="message" name="message" placeholder="Briefly describe your interest or situation (optional)" rows="5" maxlength="500"></textarea>
+                    <div class="field-msg" data-for="message"></div>
+                </div>
+                <div class="consent-line">By submitting this form, you confirm that the information provided is accurate and that you consent to being contacted by ConSea Technology regarding your inquiry.</div>
+                <button type="submit" class="btn-primary" style="border: none; cursor: pointer;">Request an Introduction</button>
+                <div class="post-submit">We typically respond within one business day. All inquiries are handled confidentially. If you prefer, email us directly at <a href="mailto:info@consea.tech">info@consea.tech</a>.</div>
+                <div id="formStatus" class="form-status" aria-live="polite"></div>
+            </form>
+        </div>
+    </section>
+
+    
+    
+    <footer>
+        <div class="footer-grid" style="grid-template-columns: 3fr 1.2fr; align-items: start;">
+            <div class="footer-brand">
+                <h4>ConSea Technology</h4>
+                <p style="margin-top:14px; font-size:0.9rem; color: rgba(255,255,255,0.6); line-height:1.6;">
+                    ConSea Technology Pte. Ltd.<br>
+                    Registration Number: 201919253G<br>
+                    <span style="white-space: nowrap;">Registered Address: 160 Robinson Road #14-04</span><br>
+                    Singapore 068914
+                </p>
+            </div>
+
+            <div class="footer-content">
+                <p style="color: rgba(255,255,255,0.8); font-size:1.05rem; max-width:520px;">
+                    Interested in structured capital or private credit opportunities in Southeast Asia?
+                    Contact us for a confidential discussion.
+                </p>
+                <p style="margin-top:18px; color: rgba(255,255,255,0.55); max-width:520px;">
+                    Bridging global capital with the dynamic growth of Southeast Asian credit markets.
+                    Singapore HQ.
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-strip">
+            <span>&copy; 2024 ConSea Technology Pte Ltd.</span>
+            <span>Information for Accredited Investors Only.</span>
+        </div>
+    </footer>
+
+
+
+
+    <script>
+        (function() {
+            const form = document.getElementById('contactForm');
+            if (!form) return;
+
+            const statusEl = document.getElementById('formStatus');
+
+            const personalDomains = new Set([
+                'gmail.com','yahoo.com','outlook.com','hotmail.com','live.com','icloud.com','aol.com','proton.me','protonmail.com','gmx.com','mail.com'
+            ]);
+
+            function setFieldState(id, msg) {
+                const input = document.getElementById(id);
+                const msgEl = form.querySelector('[data-for="' + id + '"]');
+                if (!input || !msgEl) return;
+
+                if (msg) {
+                    input.classList.add('invalid');
+                    msgEl.textContent = msg;
+                } else {
+                    input.classList.remove('invalid');
+                    msgEl.textContent = '';
+                }
+            }
+
+            function isValidEmail(email) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            }
+
+            function validate() {
+                statusEl.textContent = '';
+
+                const fullName = document.getElementById('fullName').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const org = document.getElementById('org').value.trim();
+                const role = document.getElementById('role').value.trim();
+                const message = document.getElementById('message').value.trim();
+
+                let ok = true;
+
+                if (!fullName) { setFieldState('fullName', 'This field is required.'); ok = false; } else { setFieldState('fullName', ''); }
+                if (!email) { setFieldState('email', 'This field is required.'); ok = false; }
+                else if (!isValidEmail(email)) { setFieldState('email', 'Please enter a valid work email address.'); ok = false; }
+                else {
+                    const domain = email.split('@')[1].toLowerCase();
+                    if (personalDomains.has(domain)) {
+                        setFieldState('email', 'Please use a work email address rather than a personal email.');
+                        ok = false;
+                    } else {
+                        setFieldState('email', '');
+                    }
+                }
+
+                if (!org) { setFieldState('org', 'This field is required.'); ok = false; } else { setFieldState('org', ''); }
+                if (!role) { setFieldState('role', 'This field is required.'); ok = false; } else { setFieldState('role', ''); }
+
+                if (message.length > 500) { setFieldState('message', 'Please keep your message under 500 characters.'); ok = false; }
+                else { setFieldState('message', ''); }
+
+                return ok;
+            }
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                if (!validate()) {
+                    statusEl.textContent = 'Please review the highlighted fields.';
+                    return;
+                }
+
+                const fullName = document.getElementById('fullName').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const org = document.getElementById('org').value.trim();
+                const role = document.getElementById('role').value.trim();
+                const message = document.getElementById('message').value.trim();
+
+                const to = 'info@consea.tech';
+                const subject = 'Confidential introduction request';
+                const bodyLines = [
+                    'Full name: ' + fullName,
+                    'Email: ' + email,
+                    'Organization: ' + org,
+                    'Role: ' + role,
+                    '',
+                    'Message:',
+                    message || '(none)'
+                ];
+                const body = bodyLines.join('\n');
+
+                statusEl.textContent = 'Opening your email client to send your request.';
+                window.location.href = 'mailto:' + encodeURIComponent(to) + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+
+                form.reset();
+
+                setFieldState('fullName', '');
+                setFieldState('email', '');
+                setFieldState('org', '');
+                setFieldState('role', '');
+                setFieldState('message', '');
+
+                setTimeout(function() {
+                    statusEl.textContent = 'Thank you for your inquiry. A member of our team will contact you shortly.';
+                }, 600);
+            });
+
+            ['fullName','email','org','role','message'].forEach(function(id) {
+                const el = document.getElementById(id);
+                if (!el) return;
+                el.addEventListener('blur', function() { validate(); });
+            });
+        })();
+    </script>
+
+</body>
+</html>
